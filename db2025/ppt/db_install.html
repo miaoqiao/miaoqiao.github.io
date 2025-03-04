@@ -1,0 +1,135 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DatabaseInstallation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+            line-height: 1.6;
+        }
+        h1 {
+            text-align: center;
+        }
+        .container {
+            max-width: 1000px;
+            margin: auto;
+        }
+        .section {
+            margin-bottom: 30px;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+        }
+        .code-box {
+            background: #f4f4f4;
+            padding: 10px;
+            border-left: 4px solid #333;
+            font-family: monospace;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            cursor: pointer;
+        }
+    </style>
+    <script>
+        function copyToClipboard(element) {
+            navigator.clipboard.writeText(element.innerText).then(() => {
+                alert("Command copied to clipboard");
+            }, () => {
+                alert("Failed to copy command");
+            });
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>Database Installation and Usage</h1>
+        This specification aims at providing information about two full-featured DBMSs, SQLite and DuckDB, that can be useful for you in the future.
+
+        
+
+        <div class="section">
+            <h2>SQLite</h2>
+            <p>You will first need to install SQLite on your development machine. </p>
+            <ul>
+				<li><b>Ubuntu Linux or Windows:</b> Please follow the <a onclick="javascript:pageTracker._trackPageview('/outgoing/www.tutorialspoint.com');" href="https://www.tutorialspoint.com/sqlite/sqlite_installation.htm">instructions</a>.</li>
+				<li><b>Mac OS X:</b> On Mac OS Leopard or later, you don't have to! It comes pre-installed. You can upgrade it, if you absolutely need to, with <a onclick="javascript:pageTracker._trackPageview('/outgoing/brew.sh');" href="https://brew.sh">Homebrew</a>.</li>
+			</ul>
+    		<p> Check if <code>sqlite3</code> is properly working by <a onclick="javascript:pageTracker._trackPageview('/outgoing/sqlite.org');" href="https://sqlite.org/cli.html#getting_started">following this tutorial</a>.
+    		</p>
+        </div>
+
+        <div class="section">
+            <h2>DuckDB</h2>
+            <p>Please follow the <a onclick="javascript:pageTracker._trackPageview('/outgoing/duckdb.org');" href="https://duckdb.org/docs/installation/">instructions</a> to install DuckDB for the command line environment.</p>
+			<ol>
+
+
+			   <li class="pb-3">To load the dataset into DuckDB, we use the <a onclick="javascript:pageTracker._trackPageview('/outgoing/duckdb.org');" href="https://duckdb.org/docs/extensions/sqlite_scanner.html">SQLite Scanner</a> extension in DuckDB. Install the extension on the DuckDB terminal:
+			<pre class="border border-2 shadow-sm p-2">
+			$ duckdb                         
+			v1.1.3 19864453f7
+			Enter ".help" for usage hints.
+			Connected to a transient in-memory database.
+			Use ".open FILENAME" to reopen on a persistent database.
+			D INSTALL sqlite_scanner;</pre>
+        </div>
+
+        <div class="section">
+            <h2>The small University Database used in our demo</h2>
+            <p>Please copy the DDL file and SQL code for creating small relations from the <a href = "https://www.db-book.com/university-lab-dir/sample_tables-dir/index.html"> textbook page</a>. Use sqlite to create an database by loading the DDL and SQL code with the following command in the same directory of the two downloaded files:</p>
+            <pre class="border border-2 shadow-sm p-2">
+                sqlite3 university
+                sqlite> .read DDL.sql
+                sqlite> .read smallRelationsInsertFile.sql
+                sqlite> .tables
+            </pre>
+            <p> You will see a file called university, which is the database of university. To load the university database using either SQLite or DuckDB: 
+            	<pre class="border border-2 shadow-sm p-2">
+                $ sqlite3 university
+		SQLite version 3.40.1 2022-12-28 14:03:47
+		Enter ".help" for usage hints.
+		sqlite>
+				</pre>
+                or
+               <pre class="border border-2 shadow-sm p-2">
+                $ sqlite3
+		SQLite version 3.40.1 2022-12-28 14:03:47
+		Enter ".help" for usage hints.
+		Connected to a transient in-memory database.
+		Use ".open FILENAME" to reopen on a persistent database.
+		sqlite> .open university
+		sqlite>
+				</pre>
+				Duckdb: 
+				<pre class="border border-2 shadow-sm p-2">
+                $ duckdb university
+		v1.2.0 5f5512b827
+		Enter ".help" for usage hints.
+		D
+				</pre>
+                or 
+                <pre class="border border-2 shadow-sm p-2">
+                $ duckdb
+		v1.2.0 5f5512b827
+		Enter ".help" for usage hints.
+		Connected to a transient in-memory database.
+		Use ".open FILENAME" to reopen on a persistent database.
+		D .open university
+		D
+            	</pre>
+            <p>Check tables: </p>
+            <pre class="border border-2 shadow-sm p-2">              
+                sqlite> .table
+       
+                D .table
+            </pre>
+
+        </div>
+    </div>
+</body>
+</html>
+
+
