@@ -9,15 +9,15 @@ select name from instructor where
 	salary > some (select salary from instructor where dept_name = 'Comp. Sci.');
 
 Using exists:
-select name from instructor 
+select B.name from instructor B where 
 	exists (
 		select * from instructor A 
-			where salary > A.salary and A.dept_name = 'Comp. Sci.'
+			where B.salary > A.salary and A.dept_name = 'Comp. Sci.'
 			);
 
 Using aggregation:
-select B.name from instructor B where
-	B.salary > (select min(salary) from instructor
+select name from instructor where
+	salary > (select min(salary) from instructor
 			where dept_name = 'Comp. Sci.');
 
 Using with:
