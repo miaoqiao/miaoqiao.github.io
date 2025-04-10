@@ -335,7 +335,44 @@ other students and see if your implementation is too slow.</p>
 <!-- ========================================================================= -->
 <h1 id="instructions">Instructions</h1>
 
-<p>See the <a href="https://15445.courses.cs.cmu.edu/spring2025/project0/#instructions">Project #0 instructions</a> on how to create your private repository and setup your development environment.</p>
+<h2>Creating Your Own Project Repository</h2>
+<p>If the below <code>git</code> concepts (e.g., repository, merge, pull, fork) do not make sense to you, please spend some time <a onclick="javascript:pageTracker._trackPageview('/outgoing/guides.github.com');" href="https://guides.github.com/introduction/git-handbook/">learning git</a> first.</p>
+<p>Follow the <a onclick="javascript:pageTracker._trackPageview('/outgoing/github.com');" href="https://github.com/cmu-db/bustub#cloning-this-repository">instructions</a>
+ to setup your own PRIVATE repository and your own development branch. 
+If you have previuosly forked the repository through the GitHub UI (by 
+clicking Fork), PLEASE DO NOT PUSH ANY CODE TO YOUR PUBLIC FORKED 
+REPOSITORY! Make sure your repository is PRIVATE before you <code>git push</code> any of your code.</p>
+<p>If the instructor makes any changes to the code, you can merge the 
+changes to your code by keeping your private repository connected to the
+ CMU-DB master repository. Execute the following commands to add a 
+remote source:</p>
+<pre class="border border-2 shadow-sm p-2">$ git remote add public https://github.com/cmu-db/bustub.git
+</pre>
+
+<p>You can then pull down the latest changes as needed during the semester:</p>
+<pre class="border border-2 shadow-sm p-2">$ git fetch public
+$ git merge public/master
+</pre>
+
+<h2>Setting Up Your Development Environment</h2>
+<p>First install the packages that BusTub requires:</p>
+<pre class="border border-2 shadow-sm p-2"># Linux
+$ sudo build_support/packages.sh
+# macOS
+$ build_support/packages.sh
+</pre>
+
+<p>See the <a onclick="javascript:pageTracker._trackPageview('/outgoing/github.com');" href="https://github.com/cmu-db/bustub/blob/master/README.md">README</a> for additional information on how to setup different OS environments.</p>
+<p>To build the system from the commandline, execute the following commands:</p>
+<pre class="border border-2 shadow-sm p-2">$ mkdir build
+$ cd build
+$ cmake -DCMAKE_BUILD_TYPE=Debug ..
+$ make -j`nproc`
+</pre>
+
+<!-- <p>See the <a href="https://15445.courses.cs.cmu.edu/spring2025/project0/#instructions">Project #0 instructions</a> on how to create your private repository and setup your development environment.</p> -->
+
+
 <h2>Testing</h2>
 <p>You can test the individual components of this assigment using our testing framework. We use <a onclick="javascript:pageTracker._trackPageview('/outgoing/github.com');" href="https://github.com/google/googletest">GTest</a> for unit test cases. There are three separate files that contain tests for each component:</p>
 <ul>
@@ -414,7 +451,9 @@ that are more complex than the sample test cases that we provide you.</p>
 <li> Enroll the course with entry code: B3KZW2. 
 <li>Submit via <b><a onclick="javascript:pageTracker._trackPageview('/outgoing/www.gradescope.com');" href="https://www.gradescope.com/courses/1017705">https://www.gradescope.com/courses/1017705</a></b></li>
 </ul>
-<p>Running <code>make submit-p1</code> in your <code>build/</code> directory will generate a <code>zip</code> archive called <code>project1-submission.zip</code> under your project root directory that you can submit to Gradescope.</p>
+<p>Running <code>make submit-p1</code> in your <code>build/</code> directory will generate a <code>zip</code> archive called <code>project1-submission.zip</code> under your project root directory. <p> Under the root directory, run 
+    <code> python3 gradescope_sign.py </code> 
+    to sign on the generated <code>project1-submission.zip</code>, then you can submit the zip file to Gradescope.</p>
 <p>You can submit your answers as many times as you like and get immediate feedback.</p>
 <h2>Notes on Gradescope and Autograder</h2>
 <ol>
